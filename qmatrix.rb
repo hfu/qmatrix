@@ -24,7 +24,7 @@ def qmatrix(dir, maxzoom)
 	c += 1
         path = "#{dir}/#{z}/#{x}/#{y}.mvt"
 	size = File.exist?(path) ? File.size(path) : 0
-	r[z][size.q] += 1
+	r[size.q][z] += 1
 	show(r, c) if c % 1000 == 0
       }
     }
