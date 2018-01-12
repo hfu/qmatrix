@@ -11,12 +11,12 @@ end
 def show(r, c)
   print "** count #{c} ***\n"
   QMAX.times {|q|
-    print ([q] + r[q]).map{|v| sprintf("%4d", v)}.join(' '), "\n"
+    print ([q - 1] + r[q]).map{|v| sprintf("%4d", v)}.join(' '), "\n"
   }
 end
 
 def qmatrix(dir, maxzoom)
-  r = Array.new(QMAX).map{Array.new(maxzoom, 0)} # r[q][z]
+  r = Array.new(QMAX).map{Array.new(maxzoom, 0)} # r[q + 1][z]
   c = 0
   0.upto(maxzoom) {|z|
     (2 ** z).times {|x|
@@ -24,7 +24,7 @@ def qmatrix(dir, maxzoom)
 	c += 1
         path = "#{dir}/#{z}/#{x}/#{y}.mvt"
 	size = File.exist?(path) ? File.size(path) : 0
-	r[size.q][z] += 1
+	r[size.q + 1][z] += 1
 	show(r, c) if c % 1000 == 0
       }
     }
