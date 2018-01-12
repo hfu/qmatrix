@@ -10,6 +10,7 @@ end
 
 def show(r, c)
   print "** count #{c} ***\n"
+  print [" q\z"] + (0..r[0].size).map{|v| sprintf("%4d", v)}.join(' '), "\n"
   QMAX.times {|q|
     print ([q - 1] + r[q].map{|v| v.q}).map{|v| sprintf("%4d", v)}.join(' '), "\n"
   }
