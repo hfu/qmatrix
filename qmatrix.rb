@@ -13,6 +13,7 @@ def show(r, c)
   QMAX.times {|q|
     print ([q - 1] + r[q].map{|v| v.q}).map{|v| sprintf("%4d", v)}.join(' '), "\n"
   }
+  $stdout.flush
 end
 
 def qmatrix(dir, maxzoom)
@@ -25,7 +26,7 @@ def qmatrix(dir, maxzoom)
         path = "#{dir}/#{z}/#{x}/#{y}.mvt"
 	size = File.exist?(path) ? File.size(path) : 0
 	r[size.q + 1][z] += 1
-	show(r, c) if c % 10000 == 0
+	show(r, c) if c % 100000 == 0
       }
     }
   }
