@@ -10,7 +10,7 @@ end
 
 def show(r, c)
   print "** count #{c} ***\n"
-  print ([" q\z"] + (0..r[0].size).map{|v| sprintf("%4d", v)}).join(' '), "\n"
+  print ([" q\\z"] + (0..r[0].size).map{|v| sprintf("%4d", v)}).join(' '), "\n"
   QMAX.times {|q|
     print ([q - 1] + r[q].map{|v| v.q}).map{|v| sprintf("%4d", v)}.join(' '), "\n"
   }
@@ -18,7 +18,7 @@ def show(r, c)
 end
 
 def qmatrix(dir, maxzoom)
-  r = Array.new(QMAX).map{Array.new(maxzoom, 0)} # r[q + 1][z]
+  r = Array.new(QMAX).map{Array.new(maxzoom + 1, 0)} # r[q + 1][z]
   c = 0
   0.upto(maxzoom) {|z|
     (2 ** z).times {|x|
