@@ -1,3 +1,4 @@
+require 'find'
 QMAX = 26
 
 class Fixnum
@@ -20,16 +21,15 @@ end
 def qmatrix(dir, maxzoom)
   r = Array.new(QMAX).map{Array.new(maxzoom + 1, 0)} # r[q + 1][z]
   c = 0
-  0.upto(maxzoom) {|z|
-    (2 ** z).times {|x|
-      (2 ** z).times {|y|
-	c += 1
-        path = "#{dir}/#{z}/#{x}/#{y}.mvt"
-	size = File.exist?(path) ? File.size(path) : 0
-	r[size.q + 1][z] += 1
-	show(r, c) if c % 100000 == 0
-      }
-    }
+  Find.find(dir) {|path|
+    next unless /(\d*)\/(\d*)\/(\d*)\.mvt$/.match path
+    c += 1
+    z = $1.to_i
+    x = $2.to_i
+    y = $3.to_i
+    size = File.size(path)
+    r[size.q + 1][z] += 1
+    show(r, c) if c % 100000 == 0
   }
   show(r, c)
 end
