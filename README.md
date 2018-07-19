@@ -1,3 +1,5 @@
+# DEPRECATED. Please use [mbq](https://github.com/hfu/mbq/).
+
 # qmatrix
 ## qmatrix.rb
 qmatrix.rb creates qmatrix for the whole tile pyramid, regardless the tiles actually exists in the filesystem or not.
